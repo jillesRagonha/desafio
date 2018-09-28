@@ -51,8 +51,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToNextActivity() {
-        val intent = Intent(this, DogsActivity::class.java)
-        startActivity(intent)
+
 
     }
 
