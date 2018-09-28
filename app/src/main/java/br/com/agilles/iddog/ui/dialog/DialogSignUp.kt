@@ -24,7 +24,9 @@ class DialogSignUp(private val context: Context,
                     val novoUsuario = User(email)
 
                     UserWebClient().addEmail(novoUsuario, {
-                        created(it)
+                        created(it.user)
+                        Toast.makeText(context, "Novo Usuario: ${it.user.email} Cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+
                     }, {
                         Toast.makeText(context, "Falha ao gravar o email", Toast.LENGTH_SHORT).show()
                     })
