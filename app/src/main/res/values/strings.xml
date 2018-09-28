@@ -3,4 +3,5 @@
     <string name="titulo_login">LOGIN</string>
     <string name="hint_email">Email</string>
     <string name="hint_senha">Password</string>
+    <string name="toolbar">Dogs</string>
 </resources>

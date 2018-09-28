@@ -1,15 +1,14 @@
 package br.com.agilles.iddog.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.ViewGroup
+import android.view.View
 import android.widget.Toast
 import br.com.agilles.iddog.R
 import br.com.agilles.iddog.model.Dog
 import br.com.agilles.iddog.model.User
 import br.com.agilles.iddog.retrofit.client.UserWebClient
-import br.com.agilles.iddog.ui.dialog.DialogSignUp
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -20,30 +19,60 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        configuraClickSignup()
-        configuraClickEntrar()
+        configClickEntrar()
 
     }
 
-    private fun configuraClickEntrar() {
-
+    private fun configClickEntrar() {
         login_botao_entrar.setOnClickListener {
-            UserWebClient().enter(user.token, "pug", {
-                dog = it
-            }, {
-                Toast.makeText(this, "Falha ao buscar as fotos", Toast.LENGTH_LONG).show()
+            if (validaEmail()){
 
-            })
+                showProgressBar()
+
+                val email = login_email_edit_text.text.toString()
+                user = User(email, "")
+                UserWebClient().addEmail(user, {
+                    user = User(it.user.email, it.user.token)
+                    Toast.makeText(this, "Perfeito", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Perfeito ${user.token}", Toast.LENGTH_SHORT).show()
+                    hideProgressBar()
+                }, {
+                    Toast.makeText(this, "Falha ao gravar o email", Toast.LENGTH_SHORT).show()
+
+                })
+                goToNextActivity()
+
+
+            }
+
+
         }
 
     }
 
-    fun configuraClickSignup() {
-        sign_up.setOnClickListener {
-            DialogSignUp(this, window.decorView as ViewGroup).show {
-                user = it
-                login_email_edit_text.setText(it.email)
-            }
+    private fun goToNextActivity() {
+        val intent = Intent(this, DogsActivity::class.java)
+        startActivity(intent)
+
+    }
+
+    private fun hideProgressBar() {
+        login_progress_bar.visibility = View.GONE
+        login_texto_progress.visibility = View.GONE
+    }
+
+    fun showProgressBar() {
+        login_progress_bar.visibility = View.VISIBLE
+        login_texto_progress.visibility = View.VISIBLE
+    }
+
+    fun validaEmail(): Boolean {
+        if (login_email_edit_text.text.isEmpty()) {
+            login_layout_email.isErrorEnabled = true
+            login_layout_email.error = "Preencha o campo Email"
+            return false
         }
+        return true
+
     }
 }

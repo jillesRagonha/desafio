@@ -9,10 +9,4 @@ import retrofit2.http.*
 interface UserService {
     @POST("signup")
     fun insertEmail(@Body user: User): Call<EmailResponse>
-
-    @GET("feed")
-    fun enter(@Header("Authorization")token:String,
-              @Query("category")category:String): Call<Dog>
-
-
 }
