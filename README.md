@@ -1,6 +1,6 @@
 # Projeto de desafio IdWall - Mobile
 
-Projeto desenvolvido utilizando a lingugagem Kotlin
+Projeto desenvolvido utilizando a linguagem Kotlin
 
 **Libs Utilizadas**
 
