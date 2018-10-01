@@ -1,5 +1,6 @@
 package br.com.agilles.iddog.retrofit
 
+import br.com.agilles.iddog.retrofit.service.DogsPicturesService
 import br.com.agilles.iddog.retrofit.service.UserService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,5 +15,6 @@ class RetrofitInitializer {
             .build()
 
     fun userService() = retrofit.create(UserService::class.java)
+    fun dogService() = retrofit.create(DogsPicturesService::class.java)
 
 }

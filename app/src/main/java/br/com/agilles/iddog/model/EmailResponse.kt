@@ -1,3 +1,5 @@
 package br.com.agilles.iddog.model
 
-class EmailResponse(val user:User)
+import java.io.Serializable
+
+class EmailResponse(val user:User) : Serializable

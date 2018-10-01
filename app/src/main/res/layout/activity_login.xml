@@ -8,14 +8,14 @@
     tools:context=".ui.activity.LoginActivity">
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/background_blue"
-        android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    android:layout_width="0dp"
+    android:layout_height="@dimen/background_blue"
+    android:background="@color/colorPrimary"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/login_logo_image_view"
